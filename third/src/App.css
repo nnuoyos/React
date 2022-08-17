@@ -1,0 +1,13 @@
+.box {
+    width: 500px;
+    border: 2px solid black;
+    text-align: center;
+    margin: 20px;
+}
+.item-img {
+    width: 400px;
+}
+.main {
+    display: flex;
+    justify-content: center;
+}
