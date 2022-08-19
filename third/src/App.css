@@ -1,6 +1,6 @@
 .box {
     width: 500px;
-    border: 2px solid black;
+    border: 5px solid black;
     text-align: center;
     margin: 20px;
 }
@@ -10,4 +10,16 @@
 .main {
     display: flex;
     justify-content: center;
+}
+.Win {
+    border: 5px solid green;
+    color: green;
+}
+.Lose {
+    border: 5px solid red;
+    color: red;
+}
+.Tie {
+    border: 5px solid black;
+    color: black;
 }
