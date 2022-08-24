@@ -58,9 +58,15 @@ export default class AppClass extends Component {
                     <BoxClass title="computer" item={this.state.computerSelect} result={this.state.result} />
                 </div>
                 <div className="main">
-                    <button onClick={() => this.play('scissor')}>가위</button>
-                    <button onClick={() => this.play('rock')}>바위</button>
-                    <button onClick={() => this.play('paper')}>보</button>
+                    <button onClick={() => this.play('scissor')}>
+                        <img src="https://cdn-icons.flaticon.com/png/512/4958/premium/4958318.png?token=exp=1660905885~hmac=37608b675e9087a866260f1bec296283"></img>{' '}
+                    </button>
+                    <button onClick={() => this.play('rock')}>
+                        <img src="https://cdn-icons-png.flaticon.com/512/1527/1527445.png"></img>
+                    </button>
+                    <button onClick={() => this.play('paper')}>
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828248.png"></img>
+                    </button>
                 </div>
             </div>
         );
