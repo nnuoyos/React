@@ -11,6 +11,9 @@ import './App.css';
 //5. 현재위치 버튼을 누르면 다시 현재위치 기반의 날씨 정보를 보여준다
 //6. 데이터를 들고오는 동안 로딩 스피너가 돌아간다
 function App() {
+    const [weather, setWeather] = useState(null);
+    const [city, setCity] = useState('');
+    const cities = ['paris', 'new york', 'tokyo', 'seoul'];
     const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude;
@@ -20,20 +23,43 @@ function App() {
         });
     };
     const getWeatherByCurrentLocation = async (lat, lon) => {
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
-        console.log('데이터 확인!', data);
+        //console.log('데이터 확인!', data);
+        setWeather(data);
+    };
+    const getWeatherByCity = async () => {
+        /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+        let response = await fetch(url);
+        let data = await response.json();
+        //console.log('도시 날씨 데이터 확인', data);
+        setWeather(data);
     };
 
     useEffect(() => {
-        getCurrentLocation();
-    }, []);
+        /* useEffect는 componentDidUpdate 역할도 한다 */
+        /* useEffect가 두개가 있으면 에러가 나기 때문에 한 곳에서 정리한다*/
+        if (city === '') {
+            getCurrentLocation();
+        } else {
+            getWeatherByCity();
+        }
+    }, [city]);
+
+    const handleCityChange = (city) => {
+        if (city === 'current') {
+            setCity('');
+        } else {
+            setCity(city);
+        }
+    };
     return (
         <div>
             <div className="container">
-                <WeatherBox />
-                <WeatherButton />
+                <WeatherBox weather={weather} /> {/* props로 넘기기 */}
+                <WeatherButton cities={cities} setCity={setCity} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
             </div>
         </div>
     );
