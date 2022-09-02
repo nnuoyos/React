@@ -13,9 +13,10 @@ import './App.css';
 //6. 데이터를 들고오는 동안 로딩 스피너가 돌아간다
 function App() {
     const [weather, setWeather] = useState(null);
+    const [error, setError] = useState('');
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
-    const cities = ['paris', 'new york', 'tokyo', 'seoul', 'busan'];
+    const cities = ['seoul', 'busan', 'jeju', 'new york', 'tokyo'];
     const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude;
@@ -24,9 +25,9 @@ function App() {
             getWeatherByCurrentLocation(lat, lon);
         });
     };
+
     const getWeatherByCurrentLocation = async (lat, lon) => {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
-        setLoading(true); //스피너 시작
         let response = await fetch(url);
         let data = await response.json();
         //console.log('데이터 확인!', data);
@@ -34,22 +35,29 @@ function App() {
         setLoading(false); //스피너 종료
     };
     const getWeatherByCity = async () => {
-        /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
-        setLoading(true); //스피너 시작
-        let response = await fetch(url);
-        let data = await response.json();
-        //console.log('도시 날씨 데이터 확인', data);
-        setWeather(data);
+        try {
+            /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+            let response = await fetch(url);
+            let data = await response.json();
+            //console.log('도시 날씨 데이터 확인', data);
+            setWeather(data);
+        } catch (error) {
+            console.log('잡힌 에러는?', error.message);
+            setError(error.message);
+            setLoading(true);
+        }
         setLoading(false); //스피너 종료
     };
 
     useEffect(() => {
         /* useEffect는 componentDidUpdate 역할도 한다 */
-        /* useEffect가 두개가 있으면 에러가 나기 때문에 한 곳에서 정리한다*/
+        /* useEffect가 두개가 있으면 에러가 나기 때문에 한 곳에서 정리한다 */
         if (city === '') {
+            setLoading(true);
             getCurrentLocation();
         } else {
+            setLoading(true);
             getWeatherByCity();
         }
     }, [city]);
@@ -72,7 +80,7 @@ function App() {
             ) : (
                 <div className="container">
                     <WeatherBox weather={weather} /> {/* props로 넘기기 */}
-                    <WeatherButton cities={cities} setCity={setCity} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
+                    <WeatherButton cities={cities} selectCity={city} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
                 </div>
             )}
         </div>
