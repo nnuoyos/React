@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import WeatherBox from './component/WeatherBox';
 import WeatherButton from './component/WeatherButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClipLoader from 'react-spinners/ClipLoader';
 import './App.css';
 
 //1. 앱이 실행 되자 마자 현재 위치 기반의 날씨가 보인다
@@ -13,7 +14,8 @@ import './App.css';
 function App() {
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState('');
-    const cities = ['paris', 'new york', 'tokyo', 'seoul'];
+    const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
+    const cities = ['paris', 'new york', 'tokyo', 'seoul', 'busan'];
     const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude;
@@ -24,18 +26,22 @@ function App() {
     };
     const getWeatherByCurrentLocation = async (lat, lon) => {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+        setLoading(true); //스피너 시작
         let response = await fetch(url);
         let data = await response.json();
         //console.log('데이터 확인!', data);
         setWeather(data);
+        setLoading(false); //스피너 종료
     };
     const getWeatherByCity = async () => {
         /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+        setLoading(true); //스피너 시작
         let response = await fetch(url);
         let data = await response.json();
         //console.log('도시 날씨 데이터 확인', data);
         setWeather(data);
+        setLoading(false); //스피너 종료
     };
 
     useEffect(() => {
@@ -56,11 +62,19 @@ function App() {
         }
     };
     return (
+        /* UI를 보여주는 곳 */
         <div>
-            <div className="container">
-                <WeatherBox weather={weather} /> {/* props로 넘기기 */}
-                <WeatherButton cities={cities} setCity={setCity} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
-            </div>
+            {/* 스피너 true일 때의 조건 */}
+            {loading ? (
+                <div className="container">
+                    <ClipLoader color="#ff0000" loading={loading} size={100} />
+                </div>
+            ) : (
+                <div className="container">
+                    <WeatherBox weather={weather} /> {/* props로 넘기기 */}
+                    <WeatherButton cities={cities} setCity={setCity} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
+                </div>
+            )}
         </div>
     );
 }
