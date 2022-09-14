@@ -1,0 +1,39 @@
+.login-button{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    margin: 20px 20px 0 0;
+}
+/* nav bar */
+.nav-section{
+    display: flex;
+    justify-content: center;
+}
+.nav-section img{
+    width: 140px;
+}
+.menu-list{
+    display: flex;
+    list-style: none;
+}
+.menu-list li{
+    padding: 12px;
+}
+.menu-area{
+    display: flex;
+    justify-content: center;
+}
+.nav-search{
+    position: absolute;
+    display: flex;
+    right: 15px;
+    top: 175px;
+    align-items: center;
+    border-bottom: 2px solid #000;
+}
+.nav-search input{
+    width: 160px;
+    height: 20px;
+    border: 0;
+    margin: 4px;
+}
