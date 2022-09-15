@@ -53,7 +53,7 @@
     width: 100%;
     height: auto;
     box-sizing: border-box;
-    text-align: center;
+    text-align: left;
     background-color: initial;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 3%;
@@ -92,4 +92,3 @@
     right: 10px;
     top: 10px;
 }
-.card-heart-icon
