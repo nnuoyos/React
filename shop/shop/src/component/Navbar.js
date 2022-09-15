@@ -9,9 +9,9 @@ const menuList = ['여성','Divided','남성','신생아/유아','아동','H&M H
   return (
     <div>
         <div className='login-button'>
-            <div>
+            <div className='login-inner'>
                 <FontAwesomeIcon icon={faUser} />
-                <div>로그인</div>
+                <div className='login-text'>로그인</div>
             </div>
         </div>
         <div className='nav-section'>

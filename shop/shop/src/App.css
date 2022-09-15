@@ -1,8 +1,17 @@
+/* login */
 .login-button{
     display: flex;
     justify-content: flex-end;
     font-size: 20px;
     margin: 20px 20px 0 0;
+}
+.login-inner{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+.login-text{
+    margin-left: 5px;
 }
 /* nav bar */
 .nav-section{
@@ -26,14 +35,61 @@
 .nav-search{
     position: absolute;
     display: flex;
-    right: 15px;
-    top: 175px;
+    right: 20px;
+    top: 138px;
     align-items: center;
     border-bottom: 2px solid #000;
 }
 .nav-search input{
     width: 160px;
     height: 20px;
-    border: 0;
+    border: none;
     margin: 3px;
+    outline: none;
 }
+/* card-container */
+.card-container{
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: initial;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3%;
+    box-shadow: 10px 8px 11px rgba(0, 0, 0, 3%);
+    margin: 50px 0 50px 0;
+}
+.card-container:hover{
+    transform: scale(1.05);
+    transition: all 0.4s;
+}
+.card-product-img{
+    width: 101%;
+}
+.card-text-box{
+    margin-top: 10px;
+}
+.card-conscious-choice{
+    font-size: 11px;
+    color: darkolivegreen;
+}
+.card-title{
+    font-size: 14px;
+}
+.card-price{
+    font-size: 14px;
+    font-weight: bold;
+}
+.card-new-item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    color: darkolivegreen;
+}
+.card-heart-icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.card-heart-icon
