@@ -3,6 +3,7 @@ body {
     background-image: url(https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg);
     background-size: cover;
 }
+/* container */
 .container {
     height: 100vh;
     display: flex;
@@ -10,14 +11,37 @@ body {
     align-items: center;
     flex-direction: column;
 }
-.weather-box {
-    border: 4px solid #fff;
-    padding: 50px;
-    background-color: rgba(0, 0, 0, 0.1);
+.location-wrap{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 32px;
 }
-.location {
-    font-size: 48px;
+.location{
+    font-size: 37px;
 }
-.weather-box {
-    border: 1px solid #fff;
+.weather-data-text{
+    display: grid;
+}
+.temp{
+    font-size: 80px;
+}
+.humidity,.weather-description,.today{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.humidity{
+    font-size: 19px;
+}
+.weather-description{
+    font-size: 19px;
+}
+.today{
+    font-size: 24px;
+}
+/* button */
+.weather-button{
+    margin-top: 20px;
 }
