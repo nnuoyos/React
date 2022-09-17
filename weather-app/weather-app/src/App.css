@@ -1,7 +1,8 @@
 body {
     height: 100vh;
-    background-image: url(https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg);
-    background-size: cover;
+    background-color: rgba(173, 214, 241, 0.979);
+    /* background-image: url(https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg);
+    background-size: cover; */
 }
 /* container */
 .container {
@@ -18,28 +19,44 @@ body {
     margin-top: 10px;
     font-size: 32px;
 }
-.location{
-    font-size: 37px;
-}
 .weather-data-text{
     display: grid;
 }
 .temp{
     font-size: 80px;
 }
-.humidity,.weather-description,.today{
+.weather-description,.today, .wind{
     display: grid;
     justify-content: center;
     align-items: center;
 }
-.humidity{
+.humidity, .wind{
     font-size: 19px;
+    align-items: center;
+    justify-content: center;
 }
 .weather-description{
     font-size: 19px;
 }
+.weather-icon{
+    font-size: 70px;
+    display: grid;
+    justify-content: center;
+}
+.location{
+    top: 60px;
+    font-size: 37px;
+    display: grid;
+}
 .today{
     font-size: 26px;
+    top: 30px;
+}
+.weather-icon-box{
+    /* position: relative; */
+    /* justify-content: space-between; */
+    display: flex;
+    justify-content: center;
 }
 /* button */
 .weather-button{

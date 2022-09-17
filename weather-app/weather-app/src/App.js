@@ -17,6 +17,8 @@ function App() {
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
     const cities = ['seoul', 'busan', 'jeju', 'new york', 'tokyo'];
+    const API_KEY = "81523c3aa0ea13bf7e0d71967cd5d5d4";
+    /* 현재 위치의 위도 경도 가져오기 */
     const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude;
@@ -25,19 +27,20 @@ function App() {
             getWeatherByCurrentLocation(lat, lon);
         });
     };
-
+    /* 현재 위치의 날씨 정보 */
     const getWeatherByCurrentLocation = async (lat, lon) => {
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
         //console.log('데이터 확인!', data);
         setWeather(data);
         setLoading(false); //스피너 종료
     };
+    /* 도시별 날씨 가져오기 */
     const getWeatherByCity = async () => {
         try {
             /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
-            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=81523c3aa0ea13bf7e0d71967cd5d5d4&units=metric`;
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
             let response = await fetch(url);
             let data = await response.json();
             //console.log('도시 날씨 데이터 확인', data);
@@ -52,7 +55,7 @@ function App() {
 
     useEffect(() => {
         /* useEffect는 componentDidUpdate 역할도 한다 */
-        /* useEffect가 두개가 있으면 에러가 나기 때문에 한 곳에서 정리한다 */
+        /* useEffect 는 한 곳에서 정리한다 */
         if (city === '') {
             setLoading(true);
             getCurrentLocation();
@@ -62,6 +65,7 @@ function App() {
         }
     }, [city]);
 
+    /* 도시 선택하기 */
     const handleCityChange = (city) => {
         if (city === 'current') {
             setCity('');
@@ -86,5 +90,7 @@ function App() {
         </div>
     );
 }
+
+
 
 export default App;
