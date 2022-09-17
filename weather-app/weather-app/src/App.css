@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500&family=Noto+Sans+KR:wght@100;300;400&display=swap');
+
 body {
     height: 100vh;
-    background-color: rgba(173, 214, 241, 0.979);
-    /* background-image: url(https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg);
-    background-size: cover; */
+    background: linear-gradient(#003973, #E5E5BE);
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 /* container */
 .container {
@@ -13,7 +16,6 @@ body {
     flex-direction: column;
 }
 .location-wrap{
-    display: grid;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
@@ -25,12 +27,12 @@ body {
 .temp{
     font-size: 80px;
 }
-.weather-description,.today, .wind{
+.weather-description, .temp, .today, .location-wrap{
     display: grid;
     justify-content: center;
     align-items: center;
 }
-.humidity, .wind{
+.humidity, .wind, .feels-like{
     font-size: 19px;
     align-items: center;
     justify-content: center;
@@ -43,6 +45,11 @@ body {
     display: grid;
     justify-content: center;
 }
+.weather-data-box{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
 .location{
     top: 60px;
     font-size: 37px;
@@ -53,10 +60,11 @@ body {
     top: 30px;
 }
 .weather-icon-box{
-    /* position: relative; */
-    /* justify-content: space-between; */
-    display: flex;
+    display: grid;
     justify-content: center;
+}
+.weather-icon img{
+    width: 100%;
 }
 /* button */
 .weather-button{

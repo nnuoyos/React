@@ -15,6 +15,7 @@ function App() {
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState('');
     const [city, setCity] = useState('');
+    const [id, setId] = useState('');
     const [icon, setIcon] = useState('');
     const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
     const cities = ['seoul', 'busan', 'jeju', 'new york', 'tokyo'];
@@ -35,6 +36,7 @@ function App() {
         let data = await response.json();
         console.log('데이터 확인!', data);
         setWeather(data);
+        setId(data.weather[0].id);
         setIcon(data.weather[0].icon);
         setLoading(false); //스피너 종료
     };
@@ -47,6 +49,8 @@ function App() {
             let data = await response.json();
             //console.log('도시 날씨 데이터 확인', data);
             setWeather(data);
+            setId(data.weather[0].id);
+            setIcon(data.weather[0].icon);
         } catch (error) {
             console.log('잡힌 에러는?', error.message);
             setError(error.message);
@@ -85,7 +89,7 @@ function App() {
                 </div>
             ) : (
                 <div className="container">
-                    <WeatherBox weather={weather} icon={icon}/> {/* props로 넘기기 */}
+                    <WeatherBox weather={weather} id={id} icon={icon}/> {/* props로 넘기기 */}
                     <WeatherButton cities={cities} selectCity={city} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
                 </div>
             )}
