@@ -15,6 +15,7 @@ function App() {
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState('');
     const [city, setCity] = useState('');
+    const [icon, setIcon] = useState('');
     const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
     const cities = ['seoul', 'busan', 'jeju', 'new york', 'tokyo'];
     const API_KEY = "81523c3aa0ea13bf7e0d71967cd5d5d4";
@@ -32,8 +33,9 @@ function App() {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
-        //console.log('데이터 확인!', data);
+        console.log('데이터 확인!', data);
         setWeather(data);
+        setIcon(data.weather[0].icon);
         setLoading(false); //스피너 종료
     };
     /* 도시별 날씨 가져오기 */
@@ -83,7 +85,7 @@ function App() {
                 </div>
             ) : (
                 <div className="container">
-                    <WeatherBox weather={weather} /> {/* props로 넘기기 */}
+                    <WeatherBox weather={weather} icon={icon}/> {/* props로 넘기기 */}
                     <WeatherButton cities={cities} selectCity={city} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
                 </div>
             )}
