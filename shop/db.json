@@ -47,12 +47,12 @@
         },
         {
             "id": 5,
-            "img": "https://lp2.hm.com/hmgoepprod?set=source[/95/20/9520af2b69e69ef18fbad1d2673d47b1afe2b107.jpg],origin[dam],category[],type[LOOKBOOK],res[z],hmver[1]&call=url[file:/product/main]",
-            "title": "자카드 셔츠 드레스",
-            "price": 39900,
+            "img": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F67%2F77%2F6777bfde5124508a2c59625abfa817c503b7b42d.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+            "title": "리브니트 드레스",
+            "price": 49900,
             "choice": false,
             "new": false,
-            "size": ["S", "M", "L"]
+            "size": ["S","M","L"]
         },
         {
             "id": 6,
@@ -101,9 +101,9 @@
         },
         {
             "id": 11,
-            "img": "https://lp2.hm.com/hmgoepprod?set=source[/d1/aa/d1aa5d5d4a3d0699689e7f6187514ad70dc958d6.jpg],origin[dam],category[],type[LOOKBOOK],res[z],hmver[1]&call=url[file:/product/main]",
-            "title": "플레어 로라이즈 진",
-            "price": 29900,
+            "img": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F13%2F43%2F134347e3e6d85ae6b27eb8541e4e61cab2b88d05.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+            "title": "집탑 리브니트 스웨터",
+            "price": 39900,
             "choice": true,
             "new": true,
             "size": ["S", "M", "L"]

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
+
 const ProductCard = ({item}) => {
   const navigate = useNavigate();
   const showDetail = () => {

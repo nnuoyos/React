@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({authenticate, setAuthenticate}) => {
 /* 코드의 재생산, 유지보수를 위해 메뉴의 배열을 만들어준다 */
@@ -22,7 +23,9 @@ const navigate = useNavigate()
             </div>)}
         </div>
         <div className='nav-section'>
-            <img src='https://logos-world.net/wp-content/uploads/2020/04/HM-Logo.png'></img>
+            <Link to="/">
+            <img src='https://logos-world.net/wp-content/uploads/2020/04/HM-Logo.png' alt='main page logo'></img>
+            </Link>
         </div>
         <div className='menu-area'>
             <ul className='menu-list'>

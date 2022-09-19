@@ -17,7 +17,7 @@ function App() {
     <div>
       <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
       <Routes> {/* Routes 안의 내용은 변하지만, navbar는 상단 고정을 위해 따로 빼놓는다 */}
-        <Route path="/" element={<ProductAll />} />
+        <Route path="/" element={<ProductAll />} /> {/* localhost:3000/ 에 들어가면 ProductAll component를 보여주라는 뜻*/}
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
         <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate}/>} id={ProductDetail.id} />
       </Routes>
