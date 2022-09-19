@@ -19,6 +19,7 @@ function App() {
     const [icon, setIcon] = useState('');
     const [loading, setLoading] = useState(false); //기본값은 false, 데이터 fetch일 때만 true로 바꿔주어 스피너 보여준다
     const cities = ['seoul', 'busan', 'jeju', 'new york', 'tokyo'];
+    const [query, setQuery] = useState('');
     const API_KEY = "81523c3aa0ea13bf7e0d71967cd5d5d4";
     /* 현재 위치의 위도 경도 가져오기 */
     const getCurrentLocation = () => {
@@ -29,12 +30,35 @@ function App() {
             getWeatherByCurrentLocation(lat, lon);
         });
     };
+    /* 검색 기능 */
+    const search = async (e) => {
+        try{
+            if(e.key === "Enter"){
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`)
+                .then(res => res.json())
+                .then(result => {
+                    setWeather(result);
+                    setQuery('');
+                    //console.log("result 확인", result);
+                })
+            }
+        }catch(error){
+            console.log('잡힌 에러는?', error.message);
+            errorRender(error.message);
+        }
+    }
+
+    const errorRender = (message) => {
+        setError(message);
+        /* 화면에 어떻게 렌더링 해야 하는지??? */
+    }
+
     /* 현재 위치의 날씨 정보 */
     const getWeatherByCurrentLocation = async (lat, lon) => {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
-        console.log('데이터 확인!', data);
+        //console.log('데이터 확인!', data);
         setWeather(data);
         setId(data.weather[0].id);
         setIcon(data.weather[0].icon);
@@ -88,7 +112,19 @@ function App() {
                     <ClipLoader color="#ff0000" loading={loading} size={100} />
                 </div>
             ) : (
-                <div className="container">
+                <div className={(typeof weather.main != "undefined")
+                ? ((weather.main.temp > 26)
+                    ? 'container_warm' : 'container') : 'container'}>
+                    <div className='search_box'>
+                        <input
+                        type="text"
+                        placeholder='Search...'
+                        onChange={e=>setQuery(e.target.value)}
+                        value={query}
+                        onKeyPress={search}
+                        >
+                        </input>
+                    </div>
                     <WeatherBox weather={weather} id={id} icon={icon}/> {/* props로 넘기기 */}
                     <WeatherButton cities={cities} selectCity={city} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}
                 </div>
@@ -96,7 +132,5 @@ function App() {
         </div>
     );
 }
-
-
 
 export default App;

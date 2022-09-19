@@ -2,7 +2,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(#003973, #E5E5BE);
+    /* background: linear-gradient(#003973, #E5E5BE); */
     color: #fff;
     font-family: 'Barlow', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
@@ -14,38 +14,47 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background: linear-gradient(#003973, #E5E5BE);
 }
-.location-wrap{
+.container_warm{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(#f5de5e, #e25d46);
+}
+.location_wrap{
     justify-content: center;
     align-items: center;
     margin-top: 10px;
     font-size: 32px;
 }
-.weather-data-text{
+.weather_data_text{
     display: grid;
 }
 .temp{
     font-size: 80px;
 }
-.weather-description, .temp, .today, .location-wrap{
+.weather_description, .temp, .today, .location_wrap{
     display: grid;
     justify-content: center;
     align-items: center;
 }
-.humidity, .wind, .feels-like{
+.humidity, .wind, .feels_like{
     font-size: 19px;
     align-items: center;
     justify-content: center;
 }
-.weather-description{
+.weather_description{
     font-size: 19px;
 }
-.weather-icon{
+.weather_icon{
     font-size: 70px;
     display: grid;
     justify-content: center;
 }
-.weather-data-box{
+.weather_data_box{
     display: grid;
     align-items: center;
     justify-content: center;
@@ -59,14 +68,27 @@ body {
     font-size: 26px;
     top: 30px;
 }
-.weather-icon-box{
+.weather_icon_box{
     display: grid;
     justify-content: center;
 }
-.weather-icon img{
+.weather_icon img{
     width: 100%;
 }
 /* button */
-.weather-button{
+.weather_button{
     margin-top: 20px;
+}
+/* search box */
+.search_box{
+    position: absolute;
+    top: 50px;
+}
+.search_box input{
+    width: 100%;
+    height: 32px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
 }
