@@ -19,7 +19,7 @@ function App() {
       <Routes> {/* Routes 안의 내용은 변하지만, navbar는 상단 고정을 위해 따로 빼놓는다 */}
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
-        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate}/>} />
+        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate}/>} id={ProductDetail.id} />
       </Routes>
     </div>
   );
