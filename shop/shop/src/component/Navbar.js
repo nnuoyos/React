@@ -9,6 +9,13 @@ const Navbar = ({authenticate, setAuthenticate}) => {
 /* 코드의 재생산, 유지보수를 위해 메뉴의 배열을 만들어준다 */
 const menuList = ['여성','Divided','남성','신생아/유아','아동','H&M HOME','Sale','지속가능성']
 const navigate = useNavigate()
+const search = (event) => {
+    if (event.key === "Enter"){
+        let keyword = event.target.value
+        navigate(`/?q=${keyword}`)
+        console.log("on key press 확인",keyword)
+    }
+}
 
   return (
     <div>
@@ -33,7 +40,7 @@ const navigate = useNavigate()
             </ul>
             <div className='nav-search'>
                 <FontAwesomeIcon icon={faSearch} />
-                <input placeholder='제품검색'></input>
+                <input onKeyPress={(event)=>search(event)} placeholder='제품검색'></input>
             </div>
         </div>
     </div>

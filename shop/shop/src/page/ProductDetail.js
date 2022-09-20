@@ -28,6 +28,7 @@ const ProductDetail = () => {
             size choice
           </Dropdown.Toggle>
           <Dropdown.Menu>
+            {/* product 가 true 라면 실행되어야 한다 그렇지 않으면 에러 발생 */}
             {product?.size.length > 0 && product.size.map((item)=>(<Dropdown.Item href="#/action-1">{item}</Dropdown.Item>))}
           </Dropdown.Menu>
         </Dropdown>
