@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import WeatherBox from './component/WeatherBox';
 import WeatherButton from './component/WeatherButton';
@@ -12,7 +13,7 @@ import './App.css';
 //5. 현재위치 버튼을 누르면 다시 현재위치 기반의 날씨 정보를 보여준다
 //6. 데이터를 들고오는 동안 로딩 스피너가 돌아간다
 function App() {
-    const [weather, setWeather] = useState(null);
+    const [weather, setWeather] = useState("");
     const [error, setError] = useState('');
     const [city, setCity] = useState('');
     const [id, setId] = useState('');
@@ -47,7 +48,7 @@ function App() {
             errorRender(error.message);
         }
     }
-
+    
     const errorRender = (message) => {
         setError(message);
         /* 화면에 어떻게 렌더링 해야 하는지??? */
@@ -55,7 +56,7 @@ function App() {
 
     /* 현재 위치의 날씨 정보 */
     const getWeatherByCurrentLocation = async (lat, lon) => {
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
         //console.log('데이터 확인!', data);
@@ -67,23 +68,21 @@ function App() {
     /* 도시별 날씨 가져오기 */
     const getWeatherByCity = async () => {
         try {
-            /* city state 값이 바뀌면 자동으로 바뀐다 따라서 비동기 필요 없음*/
             let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
             let response = await fetch(url);
             let data = await response.json();
-            //console.log('도시 날씨 데이터 확인', data);
             setWeather(data);
-            setId(data.weather[0].id);
-            setIcon(data.weather[0].icon);
+            setId(data&&data.weather[0].id);
+            setIcon(data&&data.weather[0].icon);
         } catch (error) {
             console.log('잡힌 에러는?', error.message);
             setError(error.message);
             setLoading(true);
         }
-        setLoading(false); //스피너 종료
+        setLoading(false);
     };
 
-    useEffect(() => {
+    useEffect((city) => {
         /* useEffect는 componentDidUpdate 역할도 한다 */
         /* useEffect 는 한 곳에서 정리한다 */
         if (city === '') {
@@ -113,7 +112,7 @@ function App() {
                 </div>
             ) : (
                 <div className={(typeof weather.main != "undefined")
-                ? ((weather.main.temp > 26)
+                ? ((weather&&weather.main.temp > 26)
                     ? 'container_warm' : 'container') : 'container'}>
                     <div className='search_box'>
                         <input

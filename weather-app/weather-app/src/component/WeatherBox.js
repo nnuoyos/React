@@ -21,15 +21,15 @@ const WeatherBox = ({weather, id, icon}) => {
             </div>
             <div className='weather_data_text'>
                 <h2 className='temp'>
-                    {Math.round(weather?.main.temp)}º 
-                </h2>
+                    {Math.round(weather && weather?.main.temp)}º
+                    </h2>
                 <div className='weather_data_box'>
-                    <h2 className='feels_like'><FontAwesomeIcon icon={faTemperatureHalf} /> feel like {(weather?.main.feels_like)}º </h2>
-                    <h2 className='humidity'><FontAwesomeIcon className='faDroplet' icon={faDroplet} /> humidity {weather?.main.humidity}% </h2>
+                    <h2 className='feels_like'><FontAwesomeIcon icon={faTemperatureHalf} /> feel like {(weather&&weather?.main.feels_like)}º </h2>
+                    <h2 className='humidity'><FontAwesomeIcon className='faDroplet' icon={faDroplet} /> humidity {weather&&weather?.main.humidity}% </h2>
                 </div>
-                <h3 className='weather_description'>{weather?.weather[0].main}</h3>
+                <h3 className='weather_description'>{weather&&weather?.weather[0].main}</h3>
                 <h3 className='weather_icon'>
-                   <img className="icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
+                   <img className="icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather icon" />
                 </h3>
             </div>
         </div>
