@@ -13,7 +13,7 @@ import './App.css';
 //5. 현재위치 버튼을 누르면 다시 현재위치 기반의 날씨 정보를 보여준다
 //6. 데이터를 들고오는 동안 로딩 스피너가 돌아간다
 function App() {
-    const [weather, setWeather] = useState("");
+    const [weather, setWeather] = useState('');
     const [error, setError] = useState('');
     const [city, setCity] = useState('');
     const [id, setId] = useState('');

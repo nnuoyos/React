@@ -33,10 +33,10 @@ body {
 .weather_data_text{
     display: grid;
 }
-.temp{
+.s_tem{
     font-size: 80px;
 }
-.weather_description, .temp, .today, .location_wrap{
+.weather_description, .s_tem, .today, .location_wrap{
     display: grid;
     justify-content: center;
     align-items: center;
