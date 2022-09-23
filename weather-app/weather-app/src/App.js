@@ -113,7 +113,7 @@ function App() {
             ) : !error ? (
                 <div className={typeof weather.main != 'undefined' ? (weather && weather.main.temp > 26 ? 'container_warm' : 'container') : 'container'}>
                     <div className="search_box">
-                        <input type="text" placeholder="Search..." onChange={(e) => setQuery(e.target.value)} value={query} onKeyPress={search}></input>
+                        <input type="text" placeholder="Enter city name" onChange={(e) => setQuery(e.target.value)} value={query} onKeyPress={search}></input>
                     </div>
                     <WeatherBox weather={weather} icon={icon} /> {/* props로 넘기기 */}
                     <WeatherButton cities={cities} selectCity={city} handleCityChange={handleCityChange} /> {/* setCity라는 함수를 props로 넘겨준다 */}

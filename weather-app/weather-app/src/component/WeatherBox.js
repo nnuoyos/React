@@ -23,7 +23,7 @@ const WeatherBox = ({ weather, icon }) => {
                 <h2 className="temp">{Math.round(weather && weather?.main.temp)}º</h2>
                 <div className="weather_data_box">
                     <h2 className="feels_like">
-                        <FontAwesomeIcon icon={faTemperatureHalf} /> min {weather && weather?.main.temp_min}º / max {weather && weather?.main.temp_max}º{' '}
+                        <FontAwesomeIcon icon={faTemperatureHalf} /> min {Math.round(weather && weather?.main.temp_min)}º / max {Math.round(weather && weather?.main.temp_max)}º{' '}
                     </h2>
                     <h2 className="humidity">
                         <FontAwesomeIcon className="faDroplet" icon={faDroplet} /> humidity {weather && weather?.main.humidity}%{' '}
